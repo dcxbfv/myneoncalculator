@@ -1,0 +1,144 @@
+<!-- Development By Ali Asgharian =)-->
+ <!-- ساخته شده توسط علی اصغریان =)-->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b20">
+  <title>GLASS CALC PRO | ماشین‌حساب حرفه‌ای</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="page-glow glow-one"></div>
+  <div class="page-glow glow-two"></div>
+
+  <header class="page-header">
+    <p class="eyebrow">SMART · MODERN · GLASS</p>
+    <h1>GLASS <span>CALC</span> PRO</h1>
+    <p class="subtitle">ماشین‌حساب حرفه‌ای با طراحی شیشه‌ای</p>
+  </header>
+
+  <main class="app-layout">
+
+    <section class="calculator glass-card">
+      <div class="card-heading">
+        <div>
+          <h2>GLASS <span>CALC</span></h2>
+          <p>محاسباتتو هوشمندانه انجام بده</p>
+        </div>
+        <span class="status-light"></span>
+      </div>
+
+      <div class="display" aria-live="polite">
+        <div class="previous-operand" id="history"></div>
+        <div class="current-operand" id="display">0</div>
+      </div>
+
+      <div class="buttons">
+        <button type="button" class="function" data-action="clear">AC</button>
+        <button type="button" class="function" data-action="sign">+/−</button>
+        <button type="button" class="function" data-action="percent">%</button>
+        <button type="button" class="operator" data-operator="÷">÷</button>
+
+        <button type="button" data-number="7">7</button>
+        <button type="button" data-number="8">8</button>
+        <button type="button" data-number="9">9</button>
+        <button type="button" class="operator" data-operator="×">×</button>
+
+        <button type="button" data-number="4">4</button>
+        <button type="button" data-number="5">5</button>
+        <button type="button" data-number="6">6</button>
+        <button type="button" class="operator" data-operator="-">−</button>
+
+        <button type="button" data-number="1">1</button>
+        <button type="button" data-number="2">2</button>
+        <button type="button" data-number="3">3</button>
+        <button type="button" class="operator" data-operator="+">+</button>
+
+        <button type="button" class="function" data-action="delete" aria-label="حذف آخرین رقم">⌫</button>
+        <button type="button" data-number="0">0</button>
+        <button type="button" data-action="decimal">.</button>
+        <button type="button" class="equals" data-action="equals">=</button>
+      </div>
+
+      <p class="keyboard-hint">با صفحه‌کلید هم می‌تونی محاسبه کنی</p>
+    </section>
+
+    <aside class="history-panel glass-card">
+      <div class="history-heading">
+        <div>
+          <p class="eyebrow">YOUR ACTIVITY</p>
+          <h2>تاریخچه محاسبات</h2>
+        </div>
+        <button
+  type="button"
+  id="clear-history"
+  class="clear-history-button"
+>
+  پاک کردن
+</button>
+      </div>
+
+      <p class="history-description">محاسبات اخیر اینجا ذخیره می‌شوند.</p>
+
+      <div id="history-list" class="history-list">
+        <p class="empty-history">هنوز محاسبه‌ای ثبت نشده.</p>
+      </div>
+    </aside>
+
+  </main>
+
+  <section class="sound-control glass-card">
+    <div class="sound-heading">
+      
+<button
+  id="sound-icon"
+  type="button"
+  aria-label="قطع صدا"
+  title="قطع صدا"
+>
+  🔊
+</button>
+
+      <label for="sound-volume">بلندی صدای کلیک</label>
+      <span id="sound-value">55%</span>
+    </div>
+
+    <input
+      type="range"
+      id="sound-volume"
+      min="0"
+      max="100"
+      value="55"
+      step="1"
+      aria-label="تنظیم بلندی صدای کلیک"
+    >
+
+    <div class="sound-labels">
+      <span>بی‌صدا</span>
+      <span>صدای زیاد</span>
+    </div>
+  </section>
+
+  <section class="extra-actions">
+    <button type="button" id="copy-result" class="copy-button">
+      کپی نتیجه
+    </button>
+    <p id="copy-status" aria-live="polite"></p>
+  </section>
+
+  <footer class="sakhte">
+    ساخته شده توسط
+  </footer>
+  <footer class="tavasot"> علی اصغریان ❤️</footer>
+</body>
+</html>

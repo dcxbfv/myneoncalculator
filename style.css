@@ -1,0 +1,933 @@
+/* Development By Ali Asgharian =)
+ ساخته شده توسط علی اصغریان =)*/
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
+
+/* ==========================
+   تنظیمات اصلی
+========================== */
+
+:root {
+  --bg: #101426;
+  --glass: rgba(255, 255, 255, 0.075);
+  --border: rgba(255, 255, 255, 0.16);
+  --text: #f6f4ff;
+  --muted: #aaa8c2;
+  --purple: #8b7cff;
+  --cyan: #63eee0;
+  --pink: #ff77d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 34px 18px 28px;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 18% 12%,
+      rgba(139, 124, 255, 0.16),
+      transparent 36%
+    ),
+    radial-gradient(
+      ellipse at 82% 75%,
+      rgba(99, 238, 224, 0.11),
+      transparent 34%
+    ),
+    var(--bg);
+
+  color: var(--text);
+  font-family: "Vazirmatn", Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+/* ==========================
+   نورهای پس‌زمینه
+========================== */
+
+.page-glow {
+  position: fixed;
+  z-index: 0;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.24;
+  pointer-events: none;
+}
+
+.glow-one {
+  top: 15%;
+  left: -100px;
+  background: var(--purple);
+}
+
+.glow-two {
+  right: -100px;
+  bottom: 8%;
+  background: #1acfc4;
+}
+
+/* ==========================
+   سربرگ
+========================== */
+
+.page-header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 8px;
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: clamp(25px, 4vw, 38px);
+  font-weight: 800;
+  letter-spacing: 1px;
+  direction: ltr;
+}
+
+.page-header h1 span {
+  color: var(--purple);
+  text-shadow: 0 0 22px rgba(139, 124, 255, 0.4);
+}
+
+.page-subtitle {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* ==========================
+   چیدمان اصلی دو کارت
+========================== */
+
+.app-layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 22px;
+  width: min(900px, 100%);
+  margin: 0 auto;
+  direction: rtl;
+}
+
+/* ==========================
+   ظاهر شیشه‌ای
+========================== */
+
+.glass-card {
+  border: 1px solid var(--border);
+
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.105),
+    rgba(255, 255, 255, 0.035)
+  );
+
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  border-radius: 26px;
+}
+
+/* ==========================
+   کارت ماشین‌حساب
+========================== */
+
+.calculator {
+  flex: 0 1 370px;
+  width: 370px;
+  min-width: 0;
+  padding: 22px;
+  direction: rtl;
+}
+
+.calculator-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.logo {
+  direction: ltr;
+  text-align: right;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.calculator-header p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 14px var(--cyan);
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 14px var(--cyan);
+  }
+
+  50% {
+    opacity: 0.55;
+    box-shadow: 0 0 5px var(--cyan);
+  }
+}
+
+/* ==========================
+   نمایشگر اعداد
+========================== */
+
+.display {
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding: 18px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  background: rgba(5, 8, 20, 0.35);
+
+  direction: ltr;
+  text-align: right;
+  overflow: hidden;
+}
+
+.previous-operand {
+  min-height: 18px;
+  color: var(--muted);
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.current-operand {
+  color: var(--text);
+  font-family: "Vazirmatn", sans-serif;
+  font-size: clamp(30px, 5vw, 40px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+
+  text-shadow: 0 0 18px rgba(99, 238, 224, 0.12);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.display:focus-within .current-operand {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(99, 238, 224, 0.28);
+}
+
+/* ==========================
+   شبکه دکمه‌ها
+========================== */
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  direction: ltr;
+}
+
+.buttons button {
+  position: relative;
+  min-width: 0;
+  min-height: 54px;
+  padding: 10px 4px;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.075);
+  color: var(--text);
+
+  font-family: "Vazirmatn", Arial, sans-serif;
+  font-size: 18px;
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform 0.16s ease,
+    background 0.16s ease,
+    box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+/* افکت نور روی دکمه‌ها */
+
+.buttons button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12),
+    transparent 55%
+  );
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.buttons button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(99, 238, 224, 0.28);
+
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.14),
+    0 0 12px rgba(99, 238, 224, 0.08);
+}
+
+.buttons button:hover::before {
+  opacity: 1;
+}
+
+.buttons button:active {
+  transform: scale(0.94);
+  box-shadow: 0 0 18px rgba(99, 238, 224, 0.15);
+}
+
+/* دکمه‌های عملکردی */
+
+.buttons .function {
+  background: rgba(255, 119, 216, 0.13);
+  color: #ffb0e7;
+}
+
+.buttons .function:hover {
+  background: rgba(255, 119, 216, 0.22);
+  border-color: rgba(255, 119, 216, 0.4);
+  box-shadow: 0 0 16px rgba(255, 119, 216, 0.12);
+}
+
+/* عملگرهای ریاضی */
+
+.buttons .operator {
+  background: rgba(139, 124, 255, 0.19);
+  color: #c4bcff;
+  font-size: 21px;
+}
+
+.buttons .operator:hover {
+  background: rgba(139, 124, 255, 0.3);
+  box-shadow: 0 0 18px rgba(139, 124, 255, 0.18);
+}
+
+/* دکمه مساوی */
+
+.buttons .equals {
+  border-color: rgba(99, 238, 224, 0.34);
+
+  background: linear-gradient(
+    135deg,
+    rgba(99, 238, 224, 0.28),
+    rgba(139, 124, 255, 0.3)
+  );
+
+  color: var(--cyan);
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.buttons .equals:hover {
+  border-color: var(--cyan);
+
+  background: linear-gradient(
+    135deg,
+    rgba(99, 238, 224, 0.4),
+    rgba(139, 124, 255, 0.4)
+  );
+
+  box-shadow:
+    0 0 20px rgba(99, 238, 224, 0.18),
+    inset 0 0 12px rgba(99, 238, 224, 0.06);
+}
+
+/* فوکوس دکمه‌ها برای کیبورد */
+
+.buttons button:focus-visible,
+.copy-button:focus-visible,
+.clear-history-button:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ==========================
+   پایین کارت ماشین‌حساب
+========================== */
+
+.calculator-footer {
+  margin-top: 19px;
+  color: #8886a7;
+  font-family: Arial, sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.calculator-footer span {
+  color: var(--cyan);
+  font-size: 16px;
+}
+
+/* ==========================
+   کارت تاریخچه
+========================== */
+
+.history-panel {
+  flex: 0 1 330px;
+  width: 330px;
+  min-width: 0;
+  padding: 22px;
+  direction: rtl;
+}
+
+.history-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.history-heading h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.section-kicker {
+  margin-bottom: 7px;
+  font-size: 9px;
+  letter-spacing: 2px;
+}
+
+/* ==========================
+   دکمه شیشه‌ای پاک کردن تاریخچه
+========================== */
+
+.clear-history-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  flex: 0 0 auto;
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 119, 216, 0.28);
+  border-radius: 12px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 216, 0.13),
+    rgba(255, 255, 255, 0.045)
+  );
+
+  color: #ffb0e7;
+  font-family: "Vazirmatn", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 4px 15px rgba(0, 0, 0, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  cursor: pointer;
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    color 0.2s ease;
+}
+
+.clear-history-button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 119, 216, 0.7);
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 119, 216, 0.24),
+    rgba(139, 124, 255, 0.13)
+  );
+
+  color: #ffffff;
+
+  box-shadow:
+    0 0 18px rgba(255, 119, 216, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.clear-history-button:active {
+  transform: scale(0.95);
+
+  box-shadow:
+    0 0 10px rgba(255, 119, 216, 0.2),
+    inset 0 0 10px rgba(255, 119, 216, 0.08);
+}
+
+.clear-history-button:focus-visible {
+  outline: 2px solid var(--pink);
+  outline-offset: 3px;
+}
+
+.clear-history-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* دکمه کپی نتیجه؛ ظاهر مستقل */
+
+.copy-button {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.copy-button:hover {
+  border-color: rgba(99, 238, 224, 0.35);
+  background: rgba(99, 238, 224, 0.1);
+  transform: translateY(-1px);
+}
+
+.history-description {
+  margin: 12px 0 16px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* فهرست محاسبات */
+
+.history-list {
+  display: grid;
+  align-content: start;
+  gap: 9px;
+  max-height: 390px;
+  overflow-y: auto;
+  padding: 2px 2px 2px 5px;
+}
+
+.history-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.history-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.035);
+  border-radius: 10px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: rgba(139, 124, 255, 0.5);
+  border-radius: 10px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.055);
+
+  direction: ltr;
+  text-align: left;
+
+  animation: history-in 0.22s ease both;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.history-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(39, 245, 237, 0.6);
+  box-shadow: 0 0 14px rgba(39, 245, 237, 0.12);
+}
+
+.history-item:active {
+  transform: scale(0.98);
+}
+
+.history-item:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.history-expression {
+  min-width: 0;
+  color: #c5c1da;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.history-result {
+  flex: 0 1 auto;
+  min-width: 0;
+  color: var(--cyan);
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.empty-history {
+  margin: 0;
+  padding: 26px 12px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  text-align: center;
+}
+
+/* ورود آیتم‌های تاریخچه */
+
+@keyframes history-in {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================
+   کپی نتیجه
+========================== */
+
+.extra-actions {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  width: min(722px, 100%);
+  margin: 18px auto 0;
+  direction: rtl;
+}
+
+.copy-button {
+  padding: 10px 17px;
+  color: var(--cyan);
+  font-size: 13px;
+}
+
+.copy-button span {
+  margin-left: 5px;
+}
+
+#copy-status {
+  min-height: 20px;
+  margin: 0;
+  color: var(--cyan);
+  font-size: 12px;
+}
+
+/* ==========================
+   راهنمای کیبورد
+========================== */
+
+.keyboard-hint {
+  position: relative;
+  z-index: 1;
+
+  margin: 20px auto 0;
+  color: #85839f;
+
+  font-size: 11px;
+  line-height: 2;
+  text-align: center;
+}
+
+/* ==========================
+   موبایل و صفحه کوچک
+========================== */
+
+@media (max-width: 700px) {
+  body {
+    padding: 25px 14px;
+  }
+
+  .app-layout {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(390px, 100%);
+    gap: 18px;
+  }
+
+  .calculator,
+  .history-panel {
+    flex: none;
+    width: 100%;
+    padding: 19px;
+  }
+
+  .history-list {
+    max-height: 280px;
+  }
+
+  .extra-actions {
+    width: min(390px, 100%);
+    flex-wrap: wrap;
+  }
+
+  .page-header {
+    margin-bottom: 22px;
+  }
+}
+
+/* ==========================
+   کاهش انیمیشن برای دسترسی‌پذیری
+========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================
+   کنترل صدای کلیک
+========================== */
+
+.sound-control {
+  position: relative;
+  z-index: 1;
+  width: min(370px, 100%);
+  margin: 18px auto 0;
+  padding: 16px 20px;
+  direction: rtl;
+}
+
+.sound-heading {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 15px;
+}
+
+.sound-icon {
+  font-size: 19px;
+}
+
+.sound-heading label {
+  flex: 1;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#sound-value {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 800;
+  direction: ltr;
+  font-variant-numeric: tabular-nums;
+}
+
+#sound-volume {
+  display: block;
+  width: 100%;
+  height: 7px;
+  margin: 0;
+  border-radius: 20px;
+  appearance: none;
+  -webkit-appearance: none;
+
+  background: linear-gradient(
+    to right,
+    var(--purple),
+    var(--cyan)
+  );
+
+  cursor: pointer;
+  accent-color: var(--cyan);
+}
+
+#sound-volume::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  transition: transform 0.15s ease;
+}
+
+#sound-volume::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+#sound-volume::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px var(--cyan);
+  cursor: pointer;
+}
+
+#sound-volume:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+.sound-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* دکمه روشن و خاموش صدا */
+
+#sound-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  background: rgba(39, 245, 237, 0.12);
+  color: white;
+  font-size: 24px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#sound-icon:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(39, 245, 237, 0.25);
+}
+
+#sound-icon:active {
+  transform: scale(0.94);
+}
+
+#sound-icon[aria-label="وصل کردن صدا"] {
+  background: rgba(255, 66, 200, 0.16);
+  box-shadow: 0 0 12px rgba(255, 66, 200, 0.15);
+}
+/* ==========================
+   ساخته شده توسط
+========================== */
+
+.sakhte {
+  color: #00ff00;
+  font-size: 20px;
+  text-shadow:yellow 0 0 10px
+}
+.tavasot{
+  color: yellowgreen;
+  text-shadow: orange 0 0 10px
+}
